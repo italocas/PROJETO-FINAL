@@ -1,0 +1,59 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
+
+.audio-player {
+  display: flex;
+  align-items: center;
+}
+
+.play-button {
+  background-color: #9370db; /* Lilás */
+  border: none;
+  border-radius: 50%; /* Botão circular */
+  padding: 15px; /* Aumenta o tamanho do botão */
+  cursor: pointer;
+  font-size: 24px;
+  width: 50px; /* Largura do botão */
+  height: 50px; /* Altura do botão */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.progress-bar {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 300px;
+  height: 5px;
+  background: #ccc; /* Barra cinza */
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+.progress-bar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px; /* Diminuindo o tamanho da bolinha do slider */
+  height: 10px; /* Diminuindo o tamanho da bolinha do slider */
+  background: #4caf50; /* Cor do botão do slider */
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.progress-bar::-moz-range-thumb {
+  width: 10px; /* Diminuindo o tamanho da bolinha do slider */
+  height: 10px; /* Diminuindo o tamanho da bolinha do slider */
+  background: #4caf50; /* Cor do botão do slider */
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.current-time, .total-time {
+  margin-left: 10px;
+  font-size: 16px;
+}
