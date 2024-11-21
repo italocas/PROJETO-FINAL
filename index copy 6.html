@@ -91,7 +91,7 @@
         }
 
         .pagination-area {
-            text-align: center ; /* Centraliza a área de paginação */
+            text-align: center; /* Centraliza a área de paginação */
             margin: 20px 0; /* Margem superior e inferior */
         }
 
@@ -116,6 +116,30 @@
             text-decoration: none; /* Remove o sublinhado dos links */
             color: #6d609e; /* Cor dos links */
         }
+
+        /* Estilos para Alto Contraste */
+        .high-contrast {
+            background-color: black; /* Cor de fundo */
+            color: yellow; /* Cor do texto */
+        }
+
+        .high-contrast a {
+            color: yellow; /* Cor dos links */
+        }
+
+        .high-contrast .banner-text {
+            color: yellow; /* Cor do texto no banner */
+        }
+
+        .high-contrast .accessibility-button {
+            background-color: #fff; /* Cor de fundo dos botões */
+            color: black; /* Cor do texto dos botões */
+        }
+
+        .high-contrast .post-button {
+            background-color: #fff; /* Cor de fundo do botão */
+            color: black; /* Cor do texto do botão */
+        }
     </style>
 </head>
 
@@ -137,7 +161,7 @@
             <img class="img-banner" src="banner.png" alt="Banner">
             <img class="overlay-image" src="logob.b 1(1).png" alt="Overlay Image">
             <div class="banner-text">
-                <h1>Pagina 6</h1>
+                <h1>Página 6</h1>
                 <p>Bem-vindo(a) ao Blog para Developers do BB. Aqui você irá encontrar tudo que precisa para conectar seu desenvolvimento profissional com o conhecimento dev do Banco do Brasil.</p>
             </div>
         </div>
@@ -145,7 +169,7 @@
     
     <main class="main-area">
         <div class="accessibility-area">
-            <button id="elAltoContraste" class="accessibility-button">Alto Contraste</button>
+            <button id="elAltoContraste" class="accessibility-button">Ativar Alto Contraste</button>
             <button id="elIncreaseFont" class="accessibility-button">Aumentar Fonte</button>
             <button id="elDecreaseFont" class="accessibility-button">Diminuir Fonte</button>
         </div>
