@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="SQUAD 27" />
+    <title>BB PARA DEVS - protótipo 1.0</title>
+    <link rel="stylesheet" type="text/css" href="./css/estilos.css" />
+    <link rel="stylesheet" type="text/css" href="./css/artigo.css" />
+    <link rel="stylesheet" type="text/css" href="./css/estilosAltoContraste.css" />
+    <style>
+        .banner-area {
+            position: relative; /* Para permitir o posicionamento absoluto do texto */
+        }
+
+        .img-banner {
+            width: 100%; /* Faz a imagem ocupar toda a largura do contêiner */
+            height: auto; /* Mantém a proporção da imagem */
+        }
+
+        .overlay-image {
+            position: absolute; /* Permite o posicionamento absoluto */
+            bottom: -50px; /* Distância do fundo da imagem banner */
+            left: 50%; /* Centraliza horizontalmente */
+            transform: translateX(-50%); /* Ajusta a posição para o centro */
+            width: 300px; /* Largura da imagem sobreposta */
+            height: auto; /* Mantém a proporção da imagem */
+            z-index: 10; /* Garante que a imagem sobreposta fique acima da imagem banner */
+        }
+
+        .banner-text {
+            position: absolute; /* Permite que o texto seja posicionado sobre a imagem */
+            top: 50%; /* Centraliza verticalmente */
+            left: 50%; /* Centraliza horizontalmente */
+            transform: translate(-50%, -90%); /* Ajusta a posição para o centro */
+            color: white; /* Cor do texto */
+            padding: 20px; /* Espaçamento interno */
+            border-radius: 10px; /* Bordas arredondadas */
+        }
+
+        .banner-text h1 {
+            font-size: 3em; /* Aumenta o tamanho da fonte do título */
+            margin: 0; /* Remove a margem padrão */
+        }
+
+        .banner-text p {
+            font-size: 1em; /* Aumenta o tamanho da fonte do parágrafo */
+            margin: 10px 0 0; /* Margem superior para espaçamento */
+        }
+
+        /* Estilo para os botões de acessibilidade */
+        .accessibility-area {
+            text-align: center; /* Centraliza os botões */
+            margin: 20px 0; /* Margem superior e inferior */
+        }
+
+        .accessibility-button {
+            background-color: #6d609e; /* Cor de fundo do botão */
+            color: white; /* Cor do texto do botão */
+            border: none; /* Remove a borda padrão */
+            border-radius: 5px; /* Bordas arredondadas */
+            padding: 10px 20px; /* Espaçamento interno */
+            font-size: 1em; /* Tamanho da fonte */
+            cursor: pointer; /* Muda o cursor para indicar que é clicável */
+            margin: 0 5px; /* Margem entre os botões */
+            transition: background-color 0.3s; /* Transição suave para a cor de fundo */
+        }
+
+        .accessibility-button:hover {
+            background-color: #7A6B9D; /* Cor de fundo ao passar o mouse */
+        }
+
+        /* Estilo para o botão FAÇA SUA PUBLICAÇÃO */
+        .post-button {
+            background-color: #6d609e; /* Cor de fundo do botão */
+            color: white; /* Cor do texto do botão */
+            border: none; /* Remove a borda padrão */
+            border-radius: 10px; /* Bordas arredondadas */
+            padding: 10px 20px; /* Espaçamento interno */
+            font-size: 1em; /* Tamanho da fonte */
+            cursor: pointer; /* Muda o cursor para indicar que é clicável */
+            text-decoration: none; /* Remove o sublinhado do link */
+            display: inline-block; /* Para que o padding funcione corretamente */
+            margin: 20px auto; /* Margem para centralizar no footer */
+            transition: background-color 0.3s; /* Transição suave para a cor de fundo */
+            text-align: center; /* Centraliza o texto dentro do botão */
+ }
+
+        .post-button:hover {
+            background-color: #7A6B9D; /* Cor de fundo ao passar o mouse */
+        }
+
+        .audio-container {
+            display: flex;
+            align-items: center;
+            width: 500px; /* Largura do player */
+            margin: 20px auto; /* Centraliza o player */
+            background-color: #f0f0f0; /* Cor de fundo do player */
+            border-radius: 10px; /* Bordas arredondadas */
+            padding: 10px; /* Espaçamento interno */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra do player */
+        }
+
+        .play-button {
+            background-color: #544492; /* Cor de fundo do botão */
+            color: white; /* Cor do texto do botão */
+            border: none; /* Remove a borda padrão */
+            border-radius: 50%; /* Botão circular */
+            width: 40px; /* Largura do botão */
+            height: 40px; /* Altura do botão */
+            font-size: 20px; /* Tamanho da fonte */
+            cursor: pointer; /* Muda o cursor para indicar que é clicável */
+            margin-right: 10px; /* Espaçamento à direita do botão */
+            transition: background-color 0.3s; /* Transição suave para a cor de fundo */
+        }
+
+        .play-button:hover {
+            background-color: #3b2f70; /* Cor de fundo ao passar o mouse */
+        }
+
+        .progress-container {
+            display: flex;
+            align-items: center;
+            flex-grow: 1; /* Faz a barra de progresso ocupar o espaço restante */
+        }
+
+        .progress-bar {
+            flex-grow: 1; /* Faz a barra de progresso ocupar o espaço restante */
+            -webkit-appearance: none; /* Remove o estilo padrão do input range */
+            appearance: none; /* Remove o estilo padrão do input range */
+            height: 4px; /* Altura da barra de progresso */
+            background: #aaa0a0; /* Cor de fundo da barra de progresso */
+            border-radius: 5px; /* Bordas arredondadas */
+            margin: 0 10px; /* Margem entre os elementos */
+        }
+
+        .progress-bar::-webkit-slider-thumb {
+            -webkit-appearance: none; /* Remove o estilo padrão do thumb */
+            appearance: none; /* Remove o estilo padrão do thumb */
+            width: 20px; /* Largura do thumb */
+            height: 20px; /* Altura do thumb */
+            border-radius: 50%; /* Thumb circular */
+            background: #3F336D; /* Cor do thumb */
+            cursor: pointer; /* Muda o cursor para indicar que é clicável */
+        }
+
+        .progress-bar::-moz-range-thumb {
+            width: 20px; /* Largura do thumb */
+            height: 20px; /* Altura do thumb */
+            border-radius: 50%; /* Thumb circular */
+            background: #3F336D; /* Cor do thumb */
+            cursor: pointer; /* Muda o cursor para indicar que é clicável */
+        }
+
+        #audio-timer {
+            font-size: 14px; /* Tamanho da fonte do timer */
+            color: #333; /* Cor do texto do timer */
+        }
+
+        .footer-area {
+            text-align: center; /* Centraliza o conteúdo do footer */
+            padding: 20px; /* Espaçamento interno */
+            background-color: #f0f0f0; /* Cor de fundo do footer */
+        }
+
+        .footer-links a {
+            margin: 0 10px; /* Margem entre os links do footer */
+            text-decoration: none; /* Remove o sublinhado dos links */
+            color: #6d609e; /* Cor dos links */
+        }
+    </style>
+</head>
+
+<body class="container">
+    <header>
+        <nav>
+            <div class="navigation-bar">
+                <div class="logo-area">
+                    <img class="img-logo" src="./images/logo-bb.jpg" alt="Logo">
+                </div>
+                <div class="nav-links">
+                    <a href="./index.html">Home</a>
+                    <a href="./sobre.html">Sobre</a>
+                    <a href="./contato.html">Contato</a>
+                </div>
+            </div>
+        </nav>
+        <div class="banner-area">
+            <img class="img-banner" src="banner.png" alt="Banner">
+            <img class="overlay-image" src="logob.b 1(1).png" alt="Overlay Image">
+            <div class="banner-text ">
+                <h1>Notícias</h1>
+                <p>Bem-vindo(a) ao Blog para Developers do BB. Boa leitura deste rico artigo fornecido pela BB para devs.</p>
+            </div>
+        </div>
+    </header>
+    
+    <main class="main-area">
+        <div class="accessibility-area">
+            <button id="elAltoContraste" class="accessibility-button">Alto Contraste</button>
+            <button id="elIncreaseFont" class="accessibility-button">Aumentar Fonte</button>
+            <button id="elDecreaseFont" class="accessibility-button">Diminuir Fonte</button>
+        </div>
+
+        <div class="article-title" id="article-title">Título da notícia será exibido aqui</div>
+        <div class="article-summary" id="article-summary">Resumo da notícia será exibido aqui</div>
+        <div class="article-image">
+            <img id="article-image" src="./images/imagem.jpg" alt="Imagem da notícia">
+        </div>
+
+        <div class="article-audio">
+            <div class="audio-container">
+                <button class="play-button" id="play-button">▶</button>
+                <div class="audio-info">
+                    <div class="audio-timer" id="audio-timer">00:00</div>
+                    <input type="range" id="progressBar" class="progress-bar" value="0" step="1" />
+                </div>
+            </div>
+        </div>
+
+        <div class="article-author" id="article-author"></div>
+        <div class="article-date" id="article-date"></div>
+        <div class="article-content" id="article-content"></div>
+
+        <a href="#" class="post-button">FAÇA UMA PUBLICAÇÃO!</a>
+    </main>
+
+    <footer class="footer-area">
+        <div class="footer-links">
+            <a href="https://www.bb.com.br/site/developers/fale-conosco-ajuda/">Ajuda e Suporte</a>
+            <a href="https://apoio.developers.bb.com.br/referency/post/5f4f8763b71fb5001268c9b4">Perguntas frequentes</a>
+        </div>
+    </footer>
+
+    <script src="./js/init.js"></script>
+    <script>
+        const article = JSON.parse(localStorage.getItem('selectedArticle'));
+
+        if (article) {
+            document.getElementById('article-title').innerText = article.title;
+            document.getElementById('article-summary').innerText = article.description;
+            document.getElementById('article-image').src = article.urlToImage;
+            document.getElementById('article-image').alt = article.title;
+            document.getElementById('article-content').innerText = article.content || 'Conteúdo não disponível.';
+            document.getElementById('article-author').innerText = article.author || 'Autor desconhecido';
+            document.getElementById('article-date').innerText = new Date(article.publishedAt).toLocaleDateString();
+        } else {
+            console.error('Nenhum artigo foi encontrado no localStorage.');
+        }
+
+        const playButton = document.getElementById('play-button');
+        const audioTimer = document.getElementById('audio-timer');
+        const progressBar = document.getElementById('progressBar');
+        let isPlaying = false;
+        let utterance;
+
+        playButton.addEventListener('click', () => {
+            const textToRead = document.getElementById('article-content').innerText;
+
+            if (!isPlaying) {
+                utterance = new SpeechSynthesisUtterance(textToRead);
+                utterance.lang = 'pt-BR'; // Define o idioma da leitura
+                utterance.onstart = () => {
+                    isPlaying = true;
+                    playButton.classList.add('playing'); // Para adicionar animação ou mudança de ícone
+                };
+                utterance.onend = () => {
+                    isPlaying = false;
+                    playButton.classList.remove('playing');
+                    audioTimer.innerText = '00:00';
+                    progressBar.value = 0; // Reseta a barra de progresso
+                };
+
+ speechSynthesis.speak(utterance);
+            } else {
+                speechSynthesis.cancel();
+                isPlaying = false;
+                playButton.classList.remove('playing');
+                audioTimer.innerText = '00:00'; // Reseta o timer ao pausar
+                progressBar.value = 0; // Reseta a barra de progresso
+            }
+        });
+    </script>
+</body>
+
+</html>
