@@ -174,21 +174,22 @@
             <button id="elDecreaseFont" class="accessibility-button">Diminuir Fonte</button>
         </div>
 
+
         <section class="articles-area" id="news-container">
             <!-- As notícias da seção de artigos serão inseridas aqui -->
         </section>
         
         <a href="publicacao.html" class="post-button">FAÇA UMA PUBLICAÇÃO!</a>
         <div class="pagination-area">
-            <a href="#" class="previous-page disabled">&lt;</a>
-            <a href="index.html"class="current-page">1</a>
-            <a href="index copy 2.html">2</a>
+            <a href="index.html" class="previous-page disabled">&lt;</a>
+            <a href="index.html">1</a>
+            <a href="index copy 2.html"class="current-page">2</a>
             <a href="index copy 3.html">3</a>
             <a href="index copy 4.html">4</a>
             <a href="index copy 5.html">5</a>
             <a href="index copy 6.html">6</a>
             <a href="index copy 7.html">7</a>
-            <a href="index copy 2.html" class="next-page">&gt;</a>
+            <a href="index copy 3.html" class="next-page">&gt;</a>
         </div>
 
         
@@ -203,6 +204,12 @@
 
     <script src="./js/init.js"></script>
     <script src="./js/api.js"></script>
+    <script>
+        document.getElementById('elAltoContraste').addEventListener('click', function() {
+            document.body.classList.toggle('high-contrast');
+            this.textContent = document.body.classList.contains('high-contrast') ? 'Desativar Alto Contraste' : 'Ativar Alto Contraste';
+        });
+    </script>
 </body>
 
 </html>
